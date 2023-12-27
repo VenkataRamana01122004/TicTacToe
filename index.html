@@ -1,0 +1,136 @@
+<html>
+    <head>
+        <title>Tic Tac Toe </title>
+        <link rel="stylesheet" href="forttt.css">
+    </head>
+    <body class="bg">
+        <h1 class="me">Player :) </h1>
+        <h1 name="fname" class="plays">1</h1>
+        <dir class="bg12">
+        <button onclick="onscr(1)" class="for" name="result">1</button>
+        <button onclick="onscr(2)" class="for" name="result">2</button>
+        <button onclick="onscr(3)" class="for" name="result">3</button><br>
+        <button onclick="onscr(4)" class="for" name="result">4</button>
+        <button onclick="onscr(5)" class="for" name="result">5</button>
+        <button onclick="onscr(6)" class="for" name="result">6</button><br>
+        <button onclick="onscr(7)" class="for" name="result">7</button>
+        <button onclick="onscr(8)" class="for" name="result">8</button>
+        <button onclick="onscr(9)" class="for" name="result">9</button>
+        </dir>
+        <h3 name="win" class="bgclr">Winner</h3>
+    </body>
+    <script>
+        function player(d)
+        {
+            var a=document.getElementsByName('fname')[0].textContent;
+            see(a,d)
+            if(a==1)
+                a=2
+            else        
+                a=1
+            document.getElementsByName('fname')[0].textContent=a 
+        }
+        function onscr(d)
+        {
+            var w=document.getElementsByName("result")[d-1].textContent;
+            if(w!='X'&&w!='O')
+                player(d)
+        }
+        function see(c,d)
+        {
+            var m
+            if(c%2==0)
+            m='X'
+            else
+            m='O'
+            pri(m,d)
+        }
+        function pri(m,d)
+        {
+            var w=document.getElementsByName("result")[d-1].textContent;
+            if(w!='X'&&w!='O')
+            document.getElementsByName("result")[w-1].textContent=m;
+            if(m=='X')
+                document.getElementsByName("result")[w-1].style.color="black";
+            else
+                document.getElementsByName("result")[w-1].style.color="blue";
+            winner(m,d);
+        }
+        function winner(m,d)
+        {
+            var vvr=0
+            var a=document.getElementsByName("result")[0].textContent;
+            var b=document.getElementsByName("result")[1].textContent;
+            var c=document.getElementsByName("result")[2].textContent;
+            var d=document.getElementsByName("result")[3].textContent;
+            var e=document.getElementsByName("result")[4].textContent;
+            var f=document.getElementsByName("result")[5].textContent;
+            var g=document.getElementsByName("result")[6].textContent;
+            var h=document.getElementsByName("result")[7].textContent;
+            var i=document.getElementsByName("result")[8].textContent;
+
+            if(a==b&&b==c)
+                vvr=1
+            else if(d==e&&e==f)
+                vvr=1
+            else if(g==h&&h==i)
+                vvr=1
+            else if(a==d&&d==g)
+                vvr=1
+            else if(b==e&&e==h)
+                vvr=1
+            else if(c==f&&f==i)
+                vvr=1
+            else if(a==e&&e==i)
+                vvr=1
+            else if(c==e&&e==g)
+                vvr=1
+           else if(a!=1&&b!=2&&c!=3&&d!=4&&e!=5&&f!=6&&g!=7&&h!=8&&i!=9)
+                vvr=2
+            else
+                vvr=0
+            printwinner(m,vvr)
+        }
+        function printwinner(m,vvr)
+        {
+            var j="Winner"
+            if(m=='X'&&vvr==1)
+            {
+                j="Player 2 win"
+            }
+            else if(m=='O'&&vvr==1)
+            {
+                j="Player 1 win"
+            }
+            else if(vvr==2)
+            {
+                j="Draw"
+                document.getElementsByName('win')[0].style.marginLeft = "590px";
+                //margin-left: 590px;,90
+            }
+            document.getElementsByName('win')[0].textContent=j
+            if(vvr==1||vvr==2)
+            document.getElementsByName('win')[0].style.color="black";
+            if(vvr==1)
+            {
+                fill(vvr);
+            }
+        }
+        function fill(vvr)
+        {
+            var i,y
+            if(vvr==1)
+            {
+                for(i=0;i<9;i++)
+                {
+                    y=document.getElementsByName("result")[i].textContent;
+                    if(y==i+1)
+                    {
+                        document.getElementsByName("result")[i].textContent='.'
+                        document.getElementsByName("result")[i].style.color="white";
+                    }
+                }
+            }
+        }
+    </script>
+</html>
